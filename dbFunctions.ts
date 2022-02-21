@@ -21,7 +21,8 @@ const createWorksTable = () => db.prepare(`
         id INTEGER PRIMARY KEY,
         name TEXT NOT NULL,
         picture TEXT NOT NULL,
-        museumId INTEGER NOT NULL
+        museumId INTEGER NOT NULL,
+        FOREIGN KEY(museumId) REFERENCES museums(id)
     );
 `).run()
 
@@ -30,8 +31,8 @@ DROP TABLE IF EXISTS ${table}
 `).run()
 
 
-deleteTable('museums')
 deleteTable('works')
+deleteTable('museums')
 
 
 createMuseumsTable()
